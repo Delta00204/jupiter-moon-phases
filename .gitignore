@@ -1,0 +1,5 @@
+.DS_Store
+
+# Claude Code local state — but keep launch.json, the shared dev-server config
+.claude/*
+!.claude/launch.json
