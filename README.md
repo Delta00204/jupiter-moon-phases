@@ -2,8 +2,11 @@
 
 **Live demo → https://jupiter-moon-phases.vercel.app**
 
-A live ephemeris of the four Galilean moons as they appear **from Jupiter** — their
+A live ephemeris of the four Galilean moons as they appear **from Jupiter**: their
 phases, eclipses, shadow transits, and the view back from Earth.
+
+Planetarium software draws these moons from Earth, four dots in a row, as Galileo
+recorded them in 1610. This draws them from Jupiter.
 
 ![Phases of the Medicean Stars](docs/masthead.png)
 
@@ -22,14 +25,14 @@ open index.html
 Jupiter-shine. The page recomputes continuously, so the live demo will show a
 different configuration.*
 
-- **The plates** — Io, Europa, Ganymede and Callisto rendered as lit spheres, with a
+- **The plates.** Io, Europa, Ganymede and Callisto rendered as lit spheres, with a
   true Lambertian terminator, Minnaert limb darkening, and Jupiter-shine on the night
   side (~1.5% of sunlight at Io, the earthshine analogue). A moon inside Jupiter's
   shadow goes deep red.
-- **Apparent size** — all four against the Sun's disk at 5 AU, to one scale.
-- **Geometry** — the system from above Jupiter's north pole (why the phase is what it
+- **Apparent size.** All four against the Sun's disk at 5 AU, to one scale.
+- **Geometry.** The system from above Jupiter's north pole (why the phase is what it
   is), and the same instant through a terrestrial telescope.
-- **Ephemeris** — eclipses, shadow ingress/egress and phase moments for the next seven
+- **Ephemeris.** Eclipses, shadow ingress/egress and phase moments for the next seven
   days, in *Astronomical Almanac* notation (`Ec.D`, `Ec.R`, `Sh.I`, `Sh.E`).
 
 Time can be held, run at up to 1 day/second, or scrubbed ±30 days.
@@ -38,7 +41,7 @@ Time can be held, run at up to 1 day/second, or scrubbed ±30 days.
 
 | file | |
 |---|---|
-| `src/app.html` | the app — markup, styles and script, skeleton-free |
+| `src/app.html` | the app: markup, styles and script, skeleton-free |
 | `index.html` | generated standalone page (`node build.mjs`) |
 | `build.mjs` | wraps `src/app.html` in an HTML skeleton |
 | `verify.mjs` | physical verification suite (`node verify.mjs`) |
@@ -50,7 +53,7 @@ be published as a hosted page. After editing it, run `node build.mjs` to regener
 ## The physics
 
 Satellite positions come from Meeus, *Astronomical Algorithms* (2nd ed.) ch. 44, the
-low-precision theory — good to about 0.1 Jupiter radii. The block between the
+low-precision theory, good to about 0.1 Jupiter radii. The block between the
 `@ephemeris` markers in `src/app.html` is self-contained; `verify.mjs` extracts and
 exercises it directly, so the tests run against shipping code rather than a copy.
 
@@ -60,11 +63,11 @@ between Jupiter and the Sun. Illuminated fraction is `k = (1 + cos uS)/2`.
 
 Two consequences the app makes visible:
 
-- Eclipses happen at full and shadow transits at new — necessarily, since both require
-  the moon on the Sun–Jupiter axis. Verified over 200 days: every eclipse begins at
-  k > 0.98, every shadow transit at k < 0.02.
+- Eclipses happen at full and shadow transits at new. Necessarily so, since both
+  require the moon on the Sun-Jupiter axis. Verified over 200 days: every eclipse
+  begins at k > 0.98, every shadow transit at k < 0.02.
 - Jupiter's axis leans only 3.1°, so Io, Europa and Ganymede fall into the shadow at
-  *every* full phase. Callisto, at 26 Jupiter radii, can ride clear — it passes whole
+  *every* full phase. Callisto, at 26 Jupiter radii, can ride clear. It passes whole
   years untouched, then keeps a season of eclipses near Jupiter's equinox, once in about
   six years.
 
@@ -83,8 +86,8 @@ Jupiter-shine irradiance law.
 
 ## A note on the design
 
-Single-theme by intent. The plates are photometric — inverting them for a light theme
-would be physically wrong — so the sheet is pitched dark to sit around them.
+Single-theme by intent. The plates are photometric. Inverting them for a light theme
+would be physically wrong, so the sheet is pitched dark to sit around them.
 
 ## How this was built
 
@@ -93,6 +96,9 @@ the visual direction, and required every physical claim to be verified rather th
 asserted. That requirement is what produced `verify.mjs`, which caught several defects
 that reading the code alone would have missed.
 
+What was decided, what was declined, and which risks were real:
+[DECISIONS.md](DECISIONS.md).
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
