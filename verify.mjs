@@ -261,5 +261,50 @@ head("11. Light time to Earth");
      `${fmt(st.lightMin)} min at Δ = ${fmt(st.Delta)} AU`);
 }
 
+/* --------------------------------------------------------------- 12 */
+head("12. Jupiter-shine is a true irradiance ratio, not a tuned constant");
+{
+  // Regression guard. An earlier build used a hand-tuned peak of 0.60 that fell
+  // off as (R_J/d) instead of (R_J/d)² — 40x too bright at Io, 179x at Callisto.
+  // It washed out the terminator, so a 3%-lit crescent rendered as a full disk.
+  const A_J = 0.52;                       // Jupiter geometric albedo, independent value
+  const st = jovian(jdOfYear(2026));
+
+  st.sats.forEach((s, i) => {
+    const m = MOONS[i];
+    // Peak shine occurs at new phase, where (1−cos uS)/2 = 1.
+    const peak = A_J * Math.pow(RJ_EQ / (m.axis - 0), 2);
+    const modelPeak = s.shine / ((1 - Math.cos(s.uS * Math.PI / 180)) / 2 || 1e-30);
+    near(`${m.name} peak shine = A_J·(R_J/d)²`, modelPeak, peak, peak * 0.06);
+    ok(`${m.name} shine stays faint (< 2% of sunlight)`, modelPeak < 0.02,
+       `${(modelPeak * 100).toFixed(3)}% of direct sunlight`);
+  });
+
+  // Inverse-square law: the ratio between any two moons must be (a₂/a₁)².
+  const peakOf = s => s.shine / ((1 - Math.cos(s.uS * Math.PI / 180)) / 2 || 1e-30);
+  const rIo = peakOf(st.sats[0]), rCal = peakOf(st.sats[3]);
+  near("Io/Callisto shine ratio obeys inverse square",
+       rIo / rCal, Math.pow(MOONS[3].axis / MOONS[0].axis, 2), 0.6);
+
+  // Must vanish at full phase — which is exactly when the moon is eclipsed,
+  // because Jupiter is then new as seen from the moon.
+  let maxShineWhenEclipsed = 0, maxShineOverall = 0, samples = 0;
+  for (let jd = jdOfYear(2026); jd < jdOfYear(2026) + 40; jd += 0.005) {
+    for (const s of jovian(jd).sats) {
+      maxShineOverall = Math.max(maxShineOverall, s.shine);
+      if (s.eclipsed) { maxShineWhenEclipsed = Math.max(maxShineWhenEclipsed, s.shine); samples++; }
+    }
+  }
+  // Not exactly zero: the umbra subtends ~9.7° at Io's orbit, so at ingress and
+  // egress the moon sits that far off opposition and Jupiter still shows a thin
+  // crescent. The physical requirement is deep suppression, not extinction.
+  ok("Jupiter-shine is deeply suppressed inside the shadow",
+     maxShineWhenEclipsed < rIo / 50 && samples > 100,
+     `max ${fmt(maxShineWhenEclipsed)} = 1/${(rIo / maxShineWhenEclipsed).toFixed(0)} of peak,`
+     + ` across ${samples} eclipsed samples`);
+  ok("Jupiter-shine never swamps the terminator", maxShineOverall < 0.02,
+     `global max ${(maxShineOverall * 100).toFixed(3)}% of sunlight`);
+}
+
 console.log(`\n\x1b[1m${pass} passed, ${fail} failed\x1b[0m\n`);
 process.exit(fail ? 1 : 0);

@@ -5,6 +5,8 @@
 A live ephemeris of the four Galilean moons as they appear **from Jupiter** — their
 phases, eclipses, shadow transits, and the view back from Earth.
 
+![Phases of the Medicean Stars](docs/masthead.png)
+
 Open `index.html` in any browser. No build step needed to run it, no network access,
 no dependencies.
 
@@ -14,9 +16,15 @@ open index.html
 
 ## What it shows
 
+![The four plates](docs/plates.png)
+
+*Io at 3% lit — a thin crescent, with its night side faintly washed by Jupiter-shine.
+Ganymede and Callisto, on the far side of their orbits, are nearly full.*
+
 - **The plates** — Io, Europa, Ganymede and Callisto rendered as lit spheres, with a
   true Lambertian terminator, Minnaert limb darkening, and Jupiter-shine on the night
-  side. A moon inside Jupiter's shadow goes deep red.
+  side (~1.5% of sunlight at Io, the earthshine analogue). A moon inside Jupiter's
+  shadow goes deep red.
 - **Apparent size** — all four against the Sun's disk at 5 AU, to one scale.
 - **Geometry** — the system from above Jupiter's north pole (why the phase is what it
   is), and the same instant through a terrestrial telescope.
@@ -65,11 +73,12 @@ Two consequences the app makes visible:
 node verify.mjs
 ```
 
-63 checks, covering Meeus' own worked example (1992 Dec 16.0 TD, reproduced to 0.006
+74 checks, covering Meeus' own worked example (1992 Dec 16.0 TD, reproduced to 0.006
 Jupiter radii), the triangle inequality and orbital distance ranges over 40 years, an
 independent two-body Kepler cross-check of Jupiter's heliocentric distance, synodic
 periods derived from eclipse recurrence, the phase/eclipse coupling, Callisto's
-six-year eclipse seasons, angular sizes, umbral cone geometry, and light time.
+six-year eclipse seasons, angular sizes, umbral cone geometry, light time, and the
+Jupiter-shine irradiance law.
 
 ## A note on the design
 
@@ -80,10 +89,8 @@ would be physically wrong — so the sheet is pitched dark to sit around them.
 
 The code was written by Claude Code (Opus 5) under my direction: I set the concept and
 the visual direction, and required every physical claim to be verified rather than
-asserted. That requirement is what produced `verify.mjs`, and it caught three real
-defects — an umbral-cone test applying the shadow's convergence twice in one axis,
-three imprecise orbital constants feeding the on-screen countdowns, and a test that
-passed while checking zero cases.
+asserted. That requirement is what produced `verify.mjs`, which caught several defects
+that reading the code alone would have missed.
 
 ## License
 

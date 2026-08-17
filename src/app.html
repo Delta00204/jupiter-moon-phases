@@ -388,6 +388,7 @@ const OBLATE  = 66854/71492;      // polar / equatorial = 0.93513
 const AU_KM   = 1.495978707e8;
 const SUN_RAD = 696000;
 const C_KMS   = 299792.458;
+const JUP_ALB = 0.52;             // Jupiter geometric albedo, for Jupiter-shine
 
 /* n is the mean motion in degrees per day, referred to the Sun–Jupiter line
    (Meeus 44). The phase cycle is therefore 360/n exactly — deriving it here
@@ -463,6 +464,14 @@ function jovian(jd){
 
     const farE = cosD(uE) > 0, farS = cosD(uS) > 0;
     const dist = (R - 1)*RJ_EQ;                                 // cloud tops → moon
+    const jupRad = Math.asin(clamp(1/R,-1,1))/DEG;              // Jupiter's radius from the moon
+
+    // Jupiter-shine on the night side, as a fraction of direct sunlight:
+    // irradiance falls as (R_J/d)², i.e. sin²(jupRad), scaled by Jupiter's
+    // albedo. Jupiter is full seen from the moon exactly when the moon is new,
+    // and new during an eclipse — so this correctly vanishes inside the shadow.
+    // ~1.5% at Io: the earthshine analogue, faint but real.
+    const shine = JUP_ALB*Math.pow(sinD(jupRad), 2)*(1 - cosD(uS))/2;
 
     return {
       moon:m, uE, uS, r:R, XE, YE, XS, YS,
@@ -472,7 +481,7 @@ function jovian(jd){
       occulted:  farE && inFrontOrBehind,
       transit:  !farE && inFrontOrBehind,
       appRad: Math.atan(m.radius/dist)/DEG,                     // angular RADIUS, deg
-      jupRad: Math.asin(clamp(1/R,-1,1))/DEG,                   // Jupiter's radius from the moon
+      jupRad, shine,
       umbraOK: au > 0,
       dist
     };
@@ -633,10 +642,10 @@ function renderPlate(ctx, sat){
 
   // Sun in the view frame: (sin uS, 0, cos uS). Full at uS = 0.
   const sx = sinD(sat.uS), sz = cosD(sat.uS);
-  // Jupiter-shine: irradiance ∝ (R_J/d)², and Jupiter is full when the moon is new.
-  const solid = Math.pow(sinD(sat.jupRad), 2);
-  const shine = clamp(0.60*Math.sqrt(solid/Math.pow(sinD(9.76),2)), 0.055, 0.60)
-              * (1 - cosD(sat.uS))/2;
+  // Jupiter-shine comes straight from the ephemeris — a true irradiance ratio,
+  // not a tuned constant, so it can never drift away from the physics again.
+  // The display gamma below is what makes 1.5% of sunlight visible at all.
+  const shine = sat.shine;
   const ecl = sat.eclipsed ? 0.045 : 1;      // Jupiter's atmosphere refracts a little red in
   const expo = 1.02 + 0.32*(0.6 - sat.moon.albedo);
 
