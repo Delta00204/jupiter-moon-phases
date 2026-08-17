@@ -18,8 +18,9 @@ open index.html
 
 ![The four plates](docs/plates.png)
 
-*Io at 3% lit — a thin crescent, with its night side faintly washed by Jupiter-shine.
-Ganymede and Callisto, on the far side of their orbits, are nearly full.*
+*One instant, 2026 Aug 17: Io a 3% crescent, its night side faintly washed by
+Jupiter-shine. The page recomputes continuously, so the live demo will show a
+different configuration.*
 
 - **The plates** — Io, Europa, Ganymede and Callisto rendered as lit spheres, with a
   true Lambertian terminator, Minnaert limb darkening, and Jupiter-shine on the night
@@ -73,8 +74,8 @@ Two consequences the app makes visible:
 node verify.mjs
 ```
 
-74 checks, covering Meeus' own worked example (1992 Dec 16.0 TD, reproduced to 0.006
-Jupiter radii), the triangle inequality and orbital distance ranges over 40 years, an
+75 checks, covering Meeus' own worked example (1992 Dec 16.0 TD, reproduced to within
+0.04 Jupiter radii), the triangle inequality and orbital distance ranges over 40 years, an
 independent two-body Kepler cross-check of Jupiter's heliocentric distance, synodic
 periods derived from eclipse recurrence, the phase/eclipse coupling, Callisto's
 six-year eclipse seasons, angular sizes, umbral cone geometry, light time, and the

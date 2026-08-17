@@ -42,6 +42,11 @@ head("1. Meeus, Astronomical Algorithms 2/e — worked example 44.a (1992 Dec 16
     near(`X(${MOONS[i].name})`, s.XE, REF[i], 0.05, " R_J"));
   ok("all four inside the method's 0.1 R_J envelope",
      st.sats.every((s, i) => Math.abs(s.XE - REF[i]) < 0.1));
+  // Pins the accuracy figure quoted in the README and the app's colophon so the
+  // prose cannot drift from the measurement. Ganymede is the worst, at 0.0300.
+  const worst = Math.max(...st.sats.map((s, i) => Math.abs(s.XE - REF[i])));
+  ok("quoted accuracy of 0.04 R_J is honest", worst <= 0.04,
+     `worst deviation ${worst.toFixed(4)} R_J (Ganymede)`);
 }
 
 /* ---------------------------------------------------------------- 2 */
