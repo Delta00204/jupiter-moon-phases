@@ -18,6 +18,13 @@ Who that matters to: readers who already know Jupiter has four large moons and
 want the mechanics rather than the trivia. Amateur observers planning a session.
 Science-curious people who bounce off almanac tables and give up.
 
+This started as a conversation with an enthusiast at the ICR Discovery Center in
+Dallas. He could name the moons and quote the event times, and he still described
+the geometry as something he had memorised rather than something he understood.
+That was the signal worth chasing: the information is freely available and the
+understanding is not. One conversation is where a problem comes from, not proof
+that it generalises, and the rest of this document treats it that way.
+
 ## The insight
 
 Move the observer to Jupiter and those four event types collapse into one
@@ -48,10 +55,11 @@ verified across 200 days, and Callisto's exceptions turned out to be the most
 interesting part rather than a problem with the claim. That the rendering
 communicates phase truthfully: this one failed the first time.
 
-**Not tested.** That anyone wants this. There are no users and no demand signal.
-It got built because the question was interesting, and dressing that up as
-validated need would be a lie. That the printed-ephemeris framing reads as
-intended to anyone other than me.
+**Not tested.** That the gap generalises beyond the one person who described it.
+A single conversation is an origin, not a demand signal, and treating n = 1 as
+validation is the easiest mistake available here. Nobody has used the finished
+thing and reported back. Nor has anyone confirmed that the printed-ephemeris
+framing reads as intended to anyone other than me.
 
 ## Two things I got wrong
 
@@ -108,7 +116,8 @@ for paper.
 Continuous integration. The suite runs on demand but nothing enforces it on push,
 so a reader has to take the number on faith. That is a gap, not a decision.
 
-And the honest one: there is still no evidence that anyone wants this. The next
-real step is not a feature. It is putting it in front of ten amateur astronomers
-and finding out whether the reframing lands, or whether I have built something
-that is only interesting to the person who built it.
+And the honest one: this rests on a single conversation. The next real step is not
+a feature. It is putting the page in front of ten more people who fit that
+description, asking whether it changes how they would explain an eclipse to a
+beginner, and finding out whether the reframing lands or whether it only ever
+landed for the two of us.
