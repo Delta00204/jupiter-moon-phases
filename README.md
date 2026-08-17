@@ -1,5 +1,7 @@
 # Phases of the Medicean Stars
 
+[![verify](https://github.com/Delta00204/jupiter-moon-phases/actions/workflows/verify.yml/badge.svg)](https://github.com/Delta00204/jupiter-moon-phases/actions/workflows/verify.yml)
+
 **Live demo → https://jupiter-moon-phases.vercel.app**
 
 A live ephemeris of the four Galilean moons as they appear **from Jupiter**: their

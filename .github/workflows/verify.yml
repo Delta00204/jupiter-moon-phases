@@ -1,0 +1,37 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The physical suite. Extracts the ephemeris block out of src/app.html and
+      # exercises it directly, so this runs against shipping code, not a copy.
+      - name: Physical verification suite
+        run: node verify.mjs
+
+      # index.html is generated from src/app.html. If someone edits the source
+      # and forgets to rebuild, the committed page and the live deploy silently
+      # drift from the code the tests just checked. This catches that.
+      - name: Committed index.html reproduces from source
+        run: |
+          before=$(sha256sum index.html | cut -d' ' -f1)
+          node build.mjs
+          after=$(sha256sum index.html | cut -d' ' -f1)
+          if [ "$before" != "$after" ]; then
+            echo "::error::index.html is stale. Run 'node build.mjs' and commit the result."
+            git --no-pager diff --stat index.html
+            exit 1
+          fi
+          echo "index.html reproduces byte-for-byte ($before)"

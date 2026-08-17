@@ -125,10 +125,7 @@ for paper.
 
 ## What is still open
 
-Continuous integration. The suite runs on demand but nothing enforces it on push,
-so a reader has to take the number on faith. That is a gap, not a decision.
-
-And the honest one: this rests on a single conversation. The next real step is not
+The honest one: this rests on a single conversation. The next real step is not
 a feature. It is putting the page in front of ten more people who fit that
 description, asking whether it changes how they would explain an eclipse to a
 beginner, and finding out whether the reframing lands or whether it only ever
