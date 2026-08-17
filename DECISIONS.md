@@ -5,46 +5,58 @@ the insight it rests on, or what got cut to protect that insight. This is that.
 
 ## The problem
 
-Not "people cannot find Jupiter's moons." That is solved, well, by several free
-products.
+Astronomy and aerospace enthusiasts are not short of data. They are short of
+places to stand.
 
-The real problem is that someone who has seen the four-dots diagram a hundred
-times still cannot tell you why Io vanishes every forty two hours, or why it
-always vanishes at the same point in its orbit. Seen from Earth, eclipses,
-occultations, transits and shadow transits arrive as four unrelated event types
-in a table. You look them up. You memorise them. You never understand them.
+Every planetarium tool answers the same question: where are Jupiter's moons
+tonight, seen from here. That question is solved, and solved well, by several
+free products. None of them offer the view from inside the system, which is what
+someone who actually cares about the Jovian system is reaching for. Not where the
+moons are. What it is like there.
 
-Who that matters to: readers who already know Jupiter has four large moons and
-want the mechanics rather than the trivia. Amateur observers planning a session.
-Science-curious people who bounce off almanac tables and give up.
+The gap shows up as memorisation. People who have followed this for years can
+quote the event times and still carry eclipses, occultations, transits and shadow
+transits as four separate things to look up. From Earth they genuinely are four
+separate things. The tools teach lookup because the vantage point leaves them no
+other option.
+
+Who this is for: people who already care. Amateur observers planning a session.
+Students heading into aerospace. Planetarium visitors who wanted more than the
+show gave them. Anyone whose interest in this system has outrun what a table can
+feed it.
 
 This started as a conversation with an enthusiast at the ICR Discovery Center in
 Dallas. He could name the moons and quote the event times, and he still described
-the geometry as something he had memorised rather than something he understood.
-That was the signal worth chasing: the information is freely available and the
-understanding is not. One conversation is where a problem comes from, not proof
-that it generalises, and the rest of this document treats it that way.
+the system as something he had memorised rather than somewhere he could picture
+himself standing. That was the signal worth chasing: the data is freely available
+and the sense of the place is not. One conversation is where a problem comes
+from, not proof that it generalises, and the rest of this document treats it that
+way.
 
 ## The insight
 
-Move the observer to Jupiter and those four event types collapse into one
-variable.
+Move the observer to Jupiter and the table stops being necessary.
 
-A moon is eclipsed exactly when it is full, because both mean the same thing:
-it is on the anti-solar side. A moon casts a shadow exactly when it is new.
-There is nothing left to memorise. The phase *is* the prediction.
+From there, a moon is eclipsed exactly when it is full, because both mean the
+same thing: it is on the anti-solar side. It casts a shadow exactly when it is
+new. Four kinds of event collapse into one thing you can simply look at. Nothing
+is left to memorise, because the picture already carries the prediction.
 
-That reframing is not reachable from the Earth view at any level of polish. It is
-the entire reason this exists, and every decision below exists to protect it.
+That is not a rendering trick, and it is not reachable from Earth at any level of
+polish, because from Earth those events really are unrelated. The vantage point
+is the product. Everything below exists to protect it.
 
 ## What success looks like
 
-Not page views. The outcome is a reader who arrives not knowing the relationship
-and leaves able to predict it. If they can look at Io at 99 per cent lit and say
-"then it is about to be eclipsed," the product worked.
+Not page views, and not accuracy for its own sake. The outcome is an enthusiast
+who arrives able to look things up and leaves able to picture the system running.
 
-Everything on the page was judged against that sentence. Anything that displayed
-data without advancing it lost its place.
+The concrete test: they see Io at 99 per cent lit and say "then it is about to go
+into eclipse," without being told and without reaching for anything. If they go
+looking for a table instead, this failed, however correct the table is.
+
+Everything on the page was judged against that sentence. Anything that added data
+without moving someone closer to it lost its place.
 
 ## Assumptions, and which were actually tested
 
@@ -83,8 +95,8 @@ block so the image and the arithmetic can no longer diverge.
 
 ## What got cut, and the rule
 
-The rule: does it make the phase relationship clearer? If not, it competes with
-it for attention and it goes.
+The rule: does it help someone picture the system from the inside? Anything that
+only adds data is competing for attention with the thing that does, and it goes.
 
 **The other ninety one moons.** Irregular, kilometres across, no phenomenon
 visible from the cloud tops. A longer list and no insight.
